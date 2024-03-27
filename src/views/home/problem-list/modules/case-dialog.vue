@@ -180,7 +180,7 @@ watch(visible, () => {
 <template>
   <NDrawer v-model:show="visible" title="Add .in and .out for coding problem" display-directive="show" :width="840">
     <NDrawerContent title="Add .in and .out for coding problem" :native-scrollbar="false" closable>
-      <NForm ref="formRef" :model="model" :rules="rules" label-placement="left" :label-width="190">
+      <NForm ref="formRef" :model="model" :rules="rules" label-placement="left" :label-width="210">
         <n-tabs style="height:100%" v-model:value="valueRef" type="card" :addable="addableRef" :closable="closableRef"
           tab-style="min-width: 80px;" @close="handleClose" @add="handleAdd">
           <n-tab-pane style="height:100%" v-for="panel in panelsRef" :key="panel.label" :name="panel.label">
