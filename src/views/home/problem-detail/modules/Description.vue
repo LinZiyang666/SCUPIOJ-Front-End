@@ -73,7 +73,7 @@ const handleSubmit = () => {
 }
 
 .input {
-  width: 200px;
+  width: 700px;
 }
 
 .code {
