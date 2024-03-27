@@ -92,4 +92,7 @@ const handleSubmit = () => {
   display: flex;
   justify-content: flex-end;
 }
+.item-span{
+  display: flex;
+}
 </style>
