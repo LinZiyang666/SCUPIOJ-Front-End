@@ -49,7 +49,7 @@ async function handleSubmit() {
     <NFormItem path="userName">
       <NInput v-model:value="model.username" :placeholder="$t('page.login.common.userNamePlaceholder')" />
     </NFormItem>
-    <NFormItem path="password">
+    <NFormItem path="newpassword">
       <NInput
         v-model:value="model.password"
         type="password"

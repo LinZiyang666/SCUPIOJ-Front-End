@@ -290,6 +290,14 @@ export function getAllUsers(data: any) {
   });
 }
 
+export function getCourseUsers(courseName: any) {
+  return request<any>({
+    url: `/home/${courseName}/member/`,
+    method: 'get',
+    roles:'level2'
+  });
+}
+
 
 export function createUser(data: any) {
   return request<any>({
