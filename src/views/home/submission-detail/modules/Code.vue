@@ -8,7 +8,7 @@ import aceEditor from '@/components/custom/aceEditor.vue';
 //@ts-ignore
 import { VMarkdownView } from 'vue3-markdown'
 import 'vue3-markdown/dist/style.css'
-import { nextTick } from 'vue';
+import { nextTick,watch } from 'vue';
 const props = defineProps<{ item: Problem,submitted:boolean, imageList: any[], course_name: any; homework_name: any, id: any,mode?:any }>();
 const valueRef = ref('main')
 const panelsRef = ref([{ label: 'main', codeAnserList: [] }])
@@ -16,12 +16,14 @@ const visible = ref(false)
 const codeMapRef:any = ref({});
 const message = useMessage()
 const fileName = ref("")
-const updatePanel = (panels: any) => {
-  panelsRef.value = [...panels]
-  valueRef.value = panels[0].label
+const updatePanel = (panels?: any) => {
+  if(panels){
+    panelsRef.value = [...panels]
+    valueRef.value = panelsRef.value[0].label
+  }
   nextTick(()=>{
-    panels.forEach((item:any,index:number)=>{
-      codeMapRef.value[index].update(item.codeAnserList)
+    panelsRef.value.forEach((item:any,index:number)=>{
+      codeMapRef.value[index] && codeMapRef.value[index].update(item.codeAnserList)
     })
   })
 }
@@ -44,7 +46,9 @@ function onPositiveClick() {
 function onNegativeClick() {
   visible.value = false
 }
-
+watch(valueRef,()=>{
+  updatePanel()
+})
 </script>
 <template>
   <div class="code">
