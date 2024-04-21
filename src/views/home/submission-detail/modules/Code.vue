@@ -8,15 +8,24 @@ import aceEditor from '@/components/custom/aceEditor.vue';
 //@ts-ignore
 import { VMarkdownView } from 'vue3-markdown'
 import 'vue3-markdown/dist/style.css'
+import { nextTick,watch } from 'vue';
 const props = defineProps<{ item: Problem,submitted:boolean, imageList: any[], course_name: any; homework_name: any, id: any,mode?:any }>();
 const valueRef = ref('main')
 const panelsRef = ref([{ label: 'main', codeAnserList: [] }])
 const visible = ref(false)
+const codeMapRef:any = ref({});
 const message = useMessage()
 const fileName = ref("")
-const updatePanel = (panels: any) => {
-  panelsRef.value = panels
-  valueRef.value = panels[0].label
+const updatePanel = (panels?: any) => {
+  if(panels){
+    panelsRef.value = [...panels]
+    valueRef.value = panelsRef.value[0].label
+  }
+  nextTick(()=>{
+    panelsRef.value.forEach((item:any,index:number)=>{
+      codeMapRef.value[index] && codeMapRef.value[index].update(item.codeAnserList)
+    })
+  })
 }
 defineExpose({
   updatePanel
@@ -37,7 +46,9 @@ function onPositiveClick() {
 function onNegativeClick() {
   visible.value = false
 }
-
+watch(valueRef,()=>{
+  updatePanel()
+})
 </script>
 <template>
   <div class="code">
@@ -52,10 +63,11 @@ function onNegativeClick() {
     </div>
     <div class="right" :style="{ width: 'calc(100% - 500px)' }">
       <n-tabs style="height:100%" v-model:value="valueRef" type="card" tab-style="min-width: 80px;">
-        <n-tab-pane style="height:100%" v-for="panel in panelsRef" :key="panel.label" :name="panel.label">
+        <n-tab-pane style="height:100%" v-for="(panel,index) in panelsRef" :key="panel.label" :name="panel.label">
           <div class="editorItem">
-            <aceEditor :mode="props.mode" :disabled="true" :idKey="panel" width="100%" height="calc(100% - 28px)"
-              v-model:value="panel.codeAnserList">
+            <aceEditor :ref="(el)=>{
+              codeMapRef[index] = el;
+            }" :mode="props.mode" :disabled="true" :idKey="panel" width="100%" height="calc(100% - 28px)">
             </aceEditor>
           </div>
         </n-tab-pane>

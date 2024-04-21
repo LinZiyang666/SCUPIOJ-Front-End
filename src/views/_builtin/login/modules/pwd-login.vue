@@ -49,7 +49,7 @@ async function handleSubmit() {
     <NFormItem path="userName">
       <NInput v-model:value="model.username" :placeholder="$t('page.login.common.userNamePlaceholder')" />
     </NFormItem>
-    <NFormItem path="password">
+    <NFormItem path="newpassword">
       <NInput
         v-model:value="model.password"
         type="password"
@@ -75,8 +75,8 @@ async function handleSubmit() {
         style="display: flex; align-items: center; justify-content: center"
       >
         <span>
-          SCUPI算法评分
-          <router-link href="https://beian.miit.gov.cn/" style="color: #6941c6; margin-left: 6px" to="#">蜀ICP备2023034748号-3</router-link>
+            SCUPI算法评分
+            <a href="https://beian.miit.gov.cn/" style="color: #6941c6; margin-left: 6px">蜀ICP备2023034748号-3</a>
         </span>
       </div>
     </NSpace>

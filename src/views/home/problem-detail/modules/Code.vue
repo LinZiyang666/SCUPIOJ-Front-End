@@ -38,10 +38,7 @@ let mapping:any = {
     "java":"<-&java&->"
 }
 const preTest = () => {
-  let ret = ""
-  if(panelsRef.value && panelsRef.value.data.length){
-    ret = mapping[(panelsRef.value.data[0].codeAnserList[0] as any).type]
-  }
+  let ret = mapping[panelsRef.value.lang]
   panelsRef.value.data.forEach((item) => {
     item.codeAnserList.forEach((data: any) => {
       ret += `<-&${item.label}&-><-&${data.question}&->`

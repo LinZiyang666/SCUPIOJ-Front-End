@@ -44,7 +44,7 @@ const handleSubmit = () => {
         <div v-if="props.item.type == 'text'">
           <div class="item" v-for="(item, index) in props.item.content_problem" :key="index">
             <p class="item-span">{{ item.question }}，
-              <NInput v-model:value="item.answer" size="small" placeholder="Please Input Answer" class="input" />
+              <NInput type="textarea" v-model:value="item.answer" size="small" placeholder="Please Input Answer" class="input" />
             </p>
           </div>
         </div>
@@ -73,7 +73,7 @@ const handleSubmit = () => {
 }
 
 .input {
-  width: 200px;
+  width: 700px;
 }
 
 .code {
@@ -91,5 +91,8 @@ const handleSubmit = () => {
 .submit-btns {
   display: flex;
   justify-content: flex-end;
+}
+.item-span{
+  display: flex;
 }
 </style>

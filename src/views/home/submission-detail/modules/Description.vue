@@ -20,7 +20,7 @@ const props = defineProps<{ item: Problem, imageList: any[], course_name: any; h
       <div v-if="props.item.type == 'text'">
         <div class="item" v-for="(item, index) in props.item.content_problem" :key="index">
           <p class="item-span">{{ item.question }}，
-            <NInput :disabled="true" v-model:value="item.answer" size="small" placeholder="Please Input Answer"
+            <NInput type="textarea" :disabled="true" v-model:value="item.answer" size="small" placeholder="Please Input Answer"
               class="input" />
           </p>
         </div>
@@ -45,7 +45,10 @@ const props = defineProps<{ item: Problem, imageList: any[], course_name: any; h
 }
 
 .input {
-  width: 200px;
+  width:700px;
+}
+.item-span{
+  display: flex;
 }
 .code {
   height: calc(100% - 120px);

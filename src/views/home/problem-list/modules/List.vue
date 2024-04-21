@@ -32,8 +32,20 @@ watch(
 <template>
   <div class="list">
     <div v-for="(item, index) in data" :key="index" class="item">
-      <NInput v-model:value="item.question" class="question" placeholder="Please Input Question" @input="changeInput" />
-      <NInput v-model:value="item.answer" class="answer" placeholder="Please Input Answer" @input="changeInput" />
+      <NInput
+        v-model:value="item.question"
+        class="question"
+        type="textarea"
+        placeholder="Please Input Question"
+        @input="changeInput"
+      />
+      <NInput
+        v-model:value="item.answer"
+        class="answer"
+        type="textarea"
+        placeholder="Please Input Answer"
+        @input="changeInput"
+      />
       <div class="buttonGroup">
         <span @click="handleAdd">
           <SvgIcon class="icon" icon="gala:add" />
