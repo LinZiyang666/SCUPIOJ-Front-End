@@ -45,7 +45,7 @@ const routes = {
             icon: 'carbon:course',
             order: 1,
             hideInMenu: true,
-            roles: ['administrator', 'teacher'],
+            roles: ['administrator'],
             title: 'Course Records'
           }
         },

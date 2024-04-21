@@ -9,7 +9,7 @@ import Text from './modules/Text.vue'
 import Description from './modules/Description.vue'
 //@ts-ignore
 import { useResolve } from '@/hooks/problem/useResolve'
-import { getProblemDetail, viewSubmissionRecord, getCourseUsers, removeCommentForQuestion } from '@/service/api/course'
+import { getProblemDetail, viewSubmissionRecord, getAllUsers, removeCommentForQuestion } from '@/service/api/course'
 import { useRoute } from 'vue-router';
 import moment from 'moment';
 import { nextTick } from 'vue';
@@ -73,7 +73,7 @@ const getData = () => {
   })
 }
 onMounted(() => {
-  getCourseUsers(route.query.course_name).then(({ data }) => {
+  getAllUsers({}).then(({ data }) => {
     users.value = data.map((item: any) => (
       {
         label: item.first_name+' '+item.username,

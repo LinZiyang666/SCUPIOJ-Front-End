@@ -86,8 +86,8 @@ async function handleSubmit() {
         style="display: flex; align-items: center; justify-content: center"
       >
         <span>
-          Don’t have an account?
-          <router-link style="color: #6941c6; margin-left: 6px" to="#">Contact Admin</router-link>
+          SCUPI算法评分
+          <router-link href="https://beian.miit.gov.cn/" style="color: #6941c6; margin-left: 6px" to="#">蜀ICP备2023034748号-3</router-link>
         </span>
       </div>
     </NSpace>

@@ -82,7 +82,6 @@ function handleResponse<T>(
     }
     if (response?.data.error) {
       window.$message?.error(response?.data.error);
-      resolve(res);
       return;
     }
     if (response?.data.detail) {

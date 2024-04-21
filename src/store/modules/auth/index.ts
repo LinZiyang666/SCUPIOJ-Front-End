@@ -45,6 +45,7 @@ export const useAuthStore = defineStore(SetupStoreId.Auth, () => {
     startLoading();
 
     const { data: loginToken, error } = await fetchLogin(userName, password);
+
     if (!error) {
       const pass = await loginByToken(loginToken, userName);
 

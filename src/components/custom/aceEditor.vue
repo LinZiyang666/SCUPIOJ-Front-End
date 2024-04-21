@@ -12,7 +12,7 @@ import 'ace-builds/src-noconflict/snippets/javascript';
 import 'ace-builds/src-noconflict/snippets/java';
 import 'ace-builds/src-noconflict/snippets/c_cpp';
 import 'ace-builds/src-noconflict/snippets/markdown';
-const $emit = defineEmits(['update:value', 'change']);
+const $emit = defineEmits(['update:value']);
 const props = defineProps(['value', 'width', 'height', 'idKey', 'mode', 'disabled', 'onChange', 'editorType', 'disabledLang', 'justForCode']);
 const language = ref(props.mode ? props.mode : 'c_cpp');
 const editorRef: any = ref(null)
@@ -73,12 +73,9 @@ const init = (lang: string, fromOuter?: string) => {
   let str = ""
   let curValue = props.value || fromOuter
   if (props.editorType != 'text') {
-    if (curValue instanceof Array) {
-      curValue.forEach((item: any) => {
-        str += item.question;
-      });
-    }
-
+    curValue.forEach((item: any) => {
+      str += item.question;
+    });
   } else {
     str = curValue
   }
@@ -115,16 +112,13 @@ function initCommon(lang: string, str: string) {
     enableLiveAutocompletion: true
   });
 }
-const changeLanguage = () => {
-  $emit('change', language.value);
-}
 </script>
 
 <template>
   <div
     :style="`width: ${props.width ? props.width : '600px'};margin-bottom:8px; height: ${props.height ? props.height : '400px'};position:relative;`">
-    <NSelect :disabled="props.disabled || props.disabledLang" @change="changeLanguage" v-model:value="language"
-      class="chooseLanguage" :options="options" placeholder="请选择语言" size="small">
+    <NSelect :disabled="props.disabled || props.disabledLang" v-model:value="language" class="chooseLanguage"
+      :options="options" placeholder="请选择语言" size="small">
     </NSelect>
     <div v-if="language == 'java'" :id="'editorJava' + (props.idKey ? props.idKey : '')"
       :style="`width: ${props.width ? props.width : '600px'}; height: ${props.height ? props.height : '400px'}`"></div>
